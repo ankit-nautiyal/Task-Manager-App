@@ -1,4 +1,4 @@
-import Todo from './components/todo.jsx';
+import Todo from './components/TaskList.jsx';
 import './App.css';
 import { Provider } from "react-redux";
 import { store } from './app/store.js';

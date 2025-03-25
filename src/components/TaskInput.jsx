@@ -1,6 +1,7 @@
+import Button from '@mui/material/Button';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../features/toDo/todoSlice";
+import { addTodo } from "../features/Todo/taskSlice";
 
 export default function AddForm(){
     const [task, setTask] = useState("");
@@ -8,7 +9,6 @@ export default function AddForm(){
 
     const submitHandler= (event)=>{
         event.preventDefault();
-        console.log(task);
         dispatch(addTodo(task));
         setTask("");
     };
@@ -16,8 +16,8 @@ export default function AddForm(){
     return(
         <>
             <form onSubmit={submitHandler}>
-                <input type="text" placeholder="Enter your task todo" value={task} onChange={(event)=> setTask(event.target.value)} name="" id="" />
-                <button>Add Task</button>
+                <input required type="text" placeholder="Enter your task " value={task} onChange={(event)=> setTask(event.target.value)} name="" id="" />
+                <Button variant="contained">Add Task</Button>
             </form>
         </>
     );
