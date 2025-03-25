@@ -3,21 +3,24 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../features/Todo/taskSlice";
 
-export default function AddForm(){
+export default function TaskInput(){
     const [task, setTask] = useState("");
     const dispatch= useDispatch();
 
-    const submitHandler= (event)=>{
+    const handleSubmit= (event)=>{
         event.preventDefault();
-        dispatch(addTodo(task));
-        setTask("");
-    };
+        if (task.trim() !== "") {
+            dispatch(addTodo(task));
+            setTask("");
+        };
+    }
+        
 
     return(
         <>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={handleSubmit}>
                 <input required type="text" placeholder="Enter your task " value={task} onChange={(event)=> setTask(event.target.value)} name="" id="" />
-                <Button variant="contained">Add Task</Button>
+                <Button variant="contained" onClick={handleSubmit}>Add Task</Button>
             </form>
         </>
     );
