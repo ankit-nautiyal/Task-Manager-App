@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../features/Auth/authSlice";
+import { login } from "../features/authSlice.jsx";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 

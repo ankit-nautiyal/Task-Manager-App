@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../features/Todo/taskSlice";
+import {addTodo} from "../features/taskSlice"
 
 export default function TaskInput(){
     const [task, setTask] = useState("");

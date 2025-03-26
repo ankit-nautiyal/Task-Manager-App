@@ -1,24 +1,33 @@
 import { Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTodo, markAsDone } from "../features/Todo/taskSlice.jsx";
+import { deleteTodo, markAsDone } from "../features/taskSlice.jsx";
 import TaskInput from "./TaskInput.jsx";
-import { logout } from "../features/Auth/authSlice.jsx";
+import { logout } from "../features/authSlice.jsx";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 
 export default function TaskList(){
     const todos= useSelector((state) => state.todo.todos);
     const navigate= useNavigate();
-
     const dispatch= useDispatch();
 
+    // To ennsure Redux store is in sync with localStorage when the app starts
+    useEffect(() => {
+        if (todos.length === 0) {
+            const savedTodos = localStorage.getItem("todos");
+            if (savedTodos) {
+                JSON.parse(savedTodos).forEach(todo => dispatch(addTodo(todo.task)));
+            }
+        }
+    }, []);  // Runs only once on first render
+
+
     const handleDelete= (id)=>{
-        console.log(`Deleted the task with ID: ${id}` );
         dispatch(deleteTodo(id));
     }
 
     const handleMarkAsDone= (id)=>{
-        console.log(`Task done with ID: ${id}` );
         dispatch(markAsDone(id));
     }
 

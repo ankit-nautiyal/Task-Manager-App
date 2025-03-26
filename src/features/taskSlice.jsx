@@ -1,7 +1,18 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
 
-const initialState= {
-    todos: [{ id: nanoid(), task: "", isDone: false}],
+// const initialState= {
+//     todos: [{ id: nanoid(), task: "", isDone: false}],
+// };
+
+// Load saved tasks from localStorage or set an empty array as default
+const loadTodosFromStorage = () => {
+    const savedTodos = localStorage.getItem("todos");
+    return savedTodos ? JSON.parse(savedTodos) : [];  // Ensure todos have valid structure
+};
+
+// Initial state now loads from localStorage and ensures `todos` array is correctly formatted
+const initialState = {
+    todos: loadTodosFromStorage(),
 };
 
 
@@ -17,10 +28,12 @@ export const taskSlice= createSlice({
                 isDone: false,
             }
             state.todos.push(newTodo); //direct mutation using redux toolkit
+            localStorage.setItem("todos", JSON.stringify(state.todos)); // Save to localStorage
         },
 
         deleteTodo: (state, action) =>{
             state.todos= state.todos.filter((todo) => todo.id !== action.payload);
+            localStorage.setItem("todos", JSON.stringify(state.todos)); // Update localStorage
         },
 
         markAsDone: (state, action) =>{
@@ -28,6 +41,7 @@ export const taskSlice= createSlice({
             if (todo) {
                 todo.isDone = true;
             }
+            localStorage.setItem("todos", JSON.stringify(state.todos)); // Update localStorage
         }
     }
 });
