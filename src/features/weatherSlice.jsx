@@ -1,29 +1,7 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchWeather } from "../api/weatherAPI";
 
 
-const API_KEY = import.meta.env.VITE_API_KEY;
-const API_URL = import.meta.env.VITE_API_URL;
-
-// Thunk to fetch weather
-export const fetchWeather = createAsyncThunk(
-    "weather/fetchWeather",
-    async (city, {rejectWithValue}) => {
-        try {
-            const response = await fetch(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`);
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || "Failed to fetch weather data");
-            }
-
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            return rejectWithValue(error.message);
-        }
-        
-    }
-);
 
 const initialState= {
     data: null,  //  Set to null initially to avoid undefined errors

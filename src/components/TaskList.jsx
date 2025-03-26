@@ -7,7 +7,9 @@ import { logout } from "../features/authSlice.jsx";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import WeatherInfo from "./WeatherInfo.jsx";
-import { fetchWeather, clearWeatherError } from "../features/weatherSlice.jsx";
+import { clearWeatherError } from "../features/weatherSlice.jsx";
+import { fetchWeather } from "../api/weatherAPI.js";
+import styles from '../styles/TaskList.module.css';
 
 const outdoorKeywords = ["swim", "walk", "run", "office", "school", "college", "shopping", "market", "meet", "go", "drive", "gym", "attend"]; //can be updated later
 
@@ -96,52 +98,64 @@ export default function TaskList(){
         const priorityOrder = { High: 1, Medium: 2, Low: 3 };
         return (priorityOrder[a.priority] || 4) - (priorityOrder[b.priority] || 4);
     });
+
+    console.log("Weather Data in TaskList.jsx:", weather); // Debugging log
     
 
     return(
-        <>  
+        <div className={styles.taskListContainer}>
             <Button variant="contained" onClick={handleLogout} sx={{position: 'absolute', top: 0, right: 0, margin: '15px'}}> Logout</Button>
 
-            <h2 style={{fontSize: '2.8rem'}}>Todo List App</h2>
+            <h2 className={styles.taskListTitle}>Todo List App</h2>
             <TaskInput/>
 
-            {outdoorTaskDetected && weather && <WeatherInfo weather={weather} error={weatherError && "Invalid city name!"} />}
+            {outdoorTaskDetected && weather && <WeatherInfo weather={weather} error={weatherError} />}
 
-            <ol>
+            <ol className={styles.taskList}>
                 {sortedTodos.map((todo) => (
-                    <li key={todo.id}>
-                        <span style={todo.isDone ? {textDecoration: "line-through"} : {}}> {todo.task} </span> 
-                        <Button sx={{margin: '5px'}} variant="outlined" onClick={() => handleMarkAsDone(todo.id)}> ✅Done</Button>
-                        <Button sx={{margin: '5px'}}  variant="outlined" onClick={() => handleDelete(todo.id)}>❌Delete</Button>
+                    <li key={todo.id} className={styles.taskItem}>
+
+                        <span className={todo.isDone ? styles.done : ""}> {todo.task} </span> 
+                        <hr />
+
+                        <div  className={styles.taskButtons}>
+                            <Button className={styles.dneBtn} variant="outlined" onClick={() => handleMarkAsDone(todo.id)}> ✅Done</Button>
+                            <Button className={styles.dltBtn} variant="outlined" onClick={() => handleDelete(todo.id)}> ❌Delete</Button>
+                        </div>
+                        
                         
 
                         {/* Priority Selection Buttons */}
-                        <Button 
-                            variant="contained" 
-                            style={{ color:" black", backgroundColor: todo.priority === "High" ? "red" : "white" }}
-                            onClick={() => handlePriorityChange(todo.id, "High")}
-                        >
-                            High
-                        </Button>
 
-                        <Button 
-                            variant="contained" 
-                            style={{ color:" black", backgroundColor: todo.priority === "Medium" ? "orange" : "white" }}
-                            onClick={() => handlePriorityChange(todo.id, "Medium")}
-                        >
-                            Medium
-                        </Button>
+                        <div className={styles.priorityBtns}>
+                            <Button 
+                                variant="contained" 
+                                style={{ color:" black", backgroundColor: todo.priority === "High" ? "red" : "white" }}
+                                onClick={() => handlePriorityChange(todo.id, "High")}
+                            >
+                                High
+                            </Button>
 
-                        <Button 
-                            variant="contained" 
-                            style={{ color:" black", backgroundColor: todo.priority === "Low" ? "green" : "white" }}
-                            onClick={() => handlePriorityChange(todo.id, "Low")}
-                        >
-                            Low
-                        </Button>
+                            <Button 
+                                variant="contained" 
+                                style={{ color:" black", backgroundColor: todo.priority === "Medium" ? "orange" : "white" }}
+                                onClick={() => handlePriorityChange(todo.id, "Medium")}
+                            >
+                                Medium
+                            </Button>
+
+                            <Button 
+                                variant="contained" 
+                                style={{ color:" black", backgroundColor: todo.priority === "Low" ? "green" : "white" }}
+                                onClick={() => handlePriorityChange(todo.id, "Low")}
+                            >
+                                Low
+                            </Button>
+                        </div>
+                    
                     </li>
                 ))}
             </ol>
-        </>
+        </div>  
     );
 }

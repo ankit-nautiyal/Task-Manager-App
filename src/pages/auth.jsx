@@ -4,6 +4,7 @@ import { login } from "../features/authSlice.jsx";
 import { useNavigate } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import styles from '../styles/Auth.module.css';
 
 
 const Auth = () => {
@@ -34,12 +35,15 @@ const Auth = () => {
 
     return (
 
-            <div className="login-container">
-                <h2 style={{fontSize: '2rem'}}>Login into Todo List App</h2>
+            <div className={styles.authContainer}>
+                <h2 className={styles.authTitle}>Login into Todo List App</h2>
                 
-                <TextField sx={{margin: '5px'}} label="Username" onChange={(e) => setUsername(e.target.value)} required error={error} onKeyDown={handleEnter}/>
-                <TextField sx={{margin: '5px'}} label="City" onChange={(e) => setCity(e.target.value)} required error={error} onKeyDown={handleEnter} />
-                <Button sx={{margin: '13px 10px 0px 10px'}} variant="contained" onClick={handleLogin}>Login</Button>
+                <div className={styles.authForm}>
+                    <TextField  label="Username" onChange={(e) => setUsername(e.target.value)} required error={error} onKeyDown={handleEnter}/>
+                    <TextField  label="City" onChange={(e) => setCity(e.target.value)} required error={error} onKeyDown={handleEnter} />
+                    <Button  variant="contained" onClick={handleLogin}>Login</Button>
+                </div>
+                
             </div>
 
     );

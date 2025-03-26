@@ -40,7 +40,7 @@ export const taskSlice= createSlice({
         markAsDone: (state, action) =>{
             const todo = state.todos.find((todo) => todo.id === action.payload);
             if (todo) {
-                todo.isDone = true;
+                todo.isDone = !todo.isDone;  // Toggle true/false
             }
             localStorage.setItem("todos", JSON.stringify(state.todos)); // Update localStorage
         },
