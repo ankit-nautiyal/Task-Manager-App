@@ -25,16 +25,21 @@ const Auth = () => {
         navigate("/");
     };
 
+    const handleEnter =(e) =>{
+        if (e.key === "Enter") {
+            handleLogin();
+        }
+    }
 
 
     return (
 
             <div className="login-container">
-                <h2>Login into Todo List App</h2>
+                <h2 style={{fontSize: '2rem'}}>Login into Todo List App</h2>
                 
-                <TextField label="Username" onChange={(e) => setUsername(e.target.value)} required />
-                <TextField label="City" onChange={(e) => setCity(e.target.value)} required error={error} />
-                <Button variant="contained" onClick={handleLogin}>Login</Button>
+                <TextField sx={{margin: '5px'}} label="Username" onChange={(e) => setUsername(e.target.value)} required error={error} onKeyDown={handleEnter}/>
+                <TextField sx={{margin: '5px'}} label="City" onChange={(e) => setCity(e.target.value)} required error={error} onKeyDown={handleEnter} />
+                <Button sx={{margin: '13px 10px 0px 10px'}} variant="contained" onClick={handleLogin}>Login</Button>
             </div>
 
     );

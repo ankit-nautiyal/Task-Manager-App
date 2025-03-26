@@ -20,8 +20,8 @@ export default function TaskInput(){
     return(
         <>
             <form onSubmit={handleSubmit}>
-                <TextField required type="text" placeholder="Enter your task " value={task} onChange={(event)=> setTask(event.target.value)}></TextField>
-                <Button variant="contained" onClick={handleSubmit}>Add Task</Button>
+                <TextField  required type="text" placeholder="Enter your task " value={task} onChange={(event)=> setTask(event.target.value)}></TextField>
+                <Button sx={{margin: '7px 0px 0px 10px'}} variant="contained" onClick={handleSubmit}>Add Task</Button>
             </form>
         </>
     );

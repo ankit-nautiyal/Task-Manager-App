@@ -7,9 +7,9 @@ import { logout } from "../features/authSlice.jsx";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import WeatherInfo from "./WeatherInfo.jsx";
-import { fetchWeather } from "../features/weatherSlice.jsx";
+import { fetchWeather, clearWeatherError } from "../features/weatherSlice.jsx";
 
-const outdoorKeywords = ["swim", "walk", "run", "office", "school", "market", "meet", "go", "drive", "gym", "attend"];
+const outdoorKeywords = ["swim", "walk", "run", "office", "school", "college", "shopping", "market", "meet", "go", "drive", "gym", "attend"]; //can be updated later
 
     
 export default function TaskList(){
@@ -18,13 +18,12 @@ export default function TaskList(){
     const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
     const city = useSelector((state) => state.auth.city);  // Get user city from Redux store
     const weather = useSelector((state) => state.weather?.data);  // to handle undefined case also
+    const weatherError = useSelector((state) => state.weather?.error);  // Get weather error
     const navigate= useNavigate();
     const dispatch= useDispatch();
     const [outdoorTaskDetected, setOutdoorTaskDetected] = useState(false);
 
-    useEffect(() => {
-        console.log("TaskList component mounted!");
-    }, []);
+
     
     // To ennsure Redux store is in sync with localStorage when the app starts
     useEffect(() => {
@@ -64,21 +63,19 @@ export default function TaskList(){
             setOutdoorTaskDetected(true);
         } else {
             setOutdoorTaskDetected(false);
+            dispatch(clearWeatherError());  // Clear error if no outdoor task
         }
     }, [todos, city]);
 
-    useEffect(() => {
-        console.log("Current Weather State:", weather);
-    }, [weather]);
-
-    useEffect(() => {
-        console.log("City from Redux:", city);
-    }, [city]);
     
 
 
     const handleDelete= (id)=>{
-        dispatch(deleteTodo(id));
+        let dltConfirm= confirm("Do you really want to delete this task?")
+
+        if (dltConfirm) {
+            dispatch(deleteTodo(id));
+        }
     }
 
     const handleMarkAsDone= (id)=>{
@@ -103,19 +100,20 @@ export default function TaskList(){
 
     return(
         <>  
-            <Button variant="contained" onClick={handleLogout}> Logout</Button>
+            <Button variant="contained" onClick={handleLogout} sx={{position: 'absolute', top: 0, right: 0, margin: '15px'}}> Logout</Button>
 
-            <h2>Todo List App</h2>
+            <h2 style={{fontSize: '2.8rem'}}>Todo List App</h2>
             <TaskInput/>
 
-            {outdoorTaskDetected && weather && <WeatherInfo weather={weather} />}
+            {outdoorTaskDetected && weather && <WeatherInfo weather={weather} error={weatherError && "Invalid city name!"} />}
 
-            <ul>
+            <ol>
                 {sortedTodos.map((todo) => (
                     <li key={todo.id}>
                         <span style={todo.isDone ? {textDecoration: "line-through"} : {}}> {todo.task} </span> 
-                        <Button variant="contained" onClick={() => handleDelete(todo.id)}> Delete</Button>
-                        <Button variant="contained" onClick={() => handleMarkAsDone(todo.id)}> Mark As Done</Button>
+                        <Button sx={{margin: '5px'}} variant="outlined" onClick={() => handleMarkAsDone(todo.id)}> ✅Done</Button>
+                        <Button sx={{margin: '5px'}}  variant="outlined" onClick={() => handleDelete(todo.id)}>❌Delete</Button>
+                        
 
                         {/* Priority Selection Buttons */}
                         <Button 
@@ -143,7 +141,7 @@ export default function TaskList(){
                         </Button>
                     </li>
                 ))}
-            </ul>
+            </ol>
         </>
     );
 }

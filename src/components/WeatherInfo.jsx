@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function WeatherInfo({ weather }) {
+export default function WeatherInfo({ weather, error }) {
 
     console.log("Weather Data in WeatherInfo.jsx:", weather); // Debugging log
 
@@ -11,9 +11,18 @@ export default function WeatherInfo({ weather }) {
     return (
         <div style={styles.container}>
             <h3>🌤️ Outdoor Task Alert - Weather in Your City</h3>
-            <p><strong>Temperature:</strong> {weather.main.temp}°C</p>
-            <p><strong>Feels Like:</strong> {weather.main.feels_like}°C</p>
-            <p><strong>Condition:</strong> {weather.weather[0].description}</p>
+        
+            {error ? (
+                <p style={{ color: "red" }}><strong>Error:</strong> {error}</p>
+            ) : weather ? (
+                <>
+                    <p><strong>Temperature:</strong> {weather.main.temp}°C</p>
+                    <p><strong>Feels Like:</strong> {weather.main.feels_like}°C</p>
+                    <p><strong>Condition:</strong> {weather.weather[0].description}</p>
+                </>
+            ) : (
+                <p>Loading weather...</p>
+            )}
         
         </div>
     );
