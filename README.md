@@ -68,7 +68,7 @@ This will start the application on `http://localhost:5173/`.
 
 ## 🏗️ **Folder Structure**  
 ```
-📂 redux-class/
+📂 task-manager-app/
 ├── 📂 node_modules/          # Dependencies (auto-generated)
 ├── 📂 public/
 │   └── 📄 favicon.webp       # Website favicon
@@ -83,12 +83,11 @@ This will start the application on `http://localhost:5173/`.
 │   │   ├── 📄 TaskList.jsx   # Task list display
 │   │   └── 📄 WeatherInfo.jsx # Weather info component
 │   ├── 📂 features/          # Redux slices (state management)
-│   │   ├── 📄 authSlice.js   # Authentication state
-│   │   ├── 📄 taskSlice.js   # Task state management
-│   │   └── 📄 weatherSlice.js # Weather data management
+│   │   ├── 📄 authSlice.jsx   # Authentication state
+│   │   ├── 📄 taskSlice.jsx   # Task state management
+│   │   └── 📄 weatherSlice.jsx # Weather data management
 │   ├── 📂 pages/             # Main page components
 │   │   ├── 📄 auth.jsx       # Authentication page
-│   │   ├── 📄 error.jsx      # Error handling page
 │   │   └── 📄 home.jsx       # Home page
 │   ├── 📂 styles/            # CSS Module styles
 │   │   ├── 📄 Auth.module.css
