@@ -109,7 +109,7 @@ export default function TaskList(){
             <h2 className={styles.taskListTitle}>Todo List App</h2>
             <TaskInput/>
 
-            {outdoorTaskDetected && weather && <WeatherInfo weather={weather} error={weatherError} />}
+            {outdoorTaskDetected && weather && <WeatherInfo weather={weather} error={weatherError && "Invalid city name!"} />}
 
             <ol className={styles.taskList}>
                 {sortedTodos.map((todo) => (
