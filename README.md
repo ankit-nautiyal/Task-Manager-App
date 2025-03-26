@@ -67,7 +67,7 @@ This will start the application on `http://localhost:5173/`.
 ---
 
 ## 🏗️ **Folder Structure**  
-
+```
 📂 redux-class/
 ├── 📂 node_modules/          # Dependencies (auto-generated)
 ├── 📂 public/
@@ -106,7 +106,7 @@ This will start the application on `http://localhost:5173/`.
 ├── 📄 package-lock.json      # Package lock file
 ├── 📄 README.md              # Project documentation
 └── 📄 vite.config.js         # Vite configuration
-
+```
 ---
 
 ## 📌 **Usage**  
