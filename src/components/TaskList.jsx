@@ -106,7 +106,7 @@ export default function TaskList(){
         <div className={styles.taskListContainer}>
             <Button variant="contained" onClick={handleLogout} sx={{position: 'absolute', top: 0, right: 0, margin: '15px'}}> Logout</Button>
 
-            <h2 className={styles.taskListTitle}>Todo List App</h2>
+            <h2 className={styles.taskListTitle}>Task Manager App</h2>
             <TaskInput/>
 
             {outdoorTaskDetected && weather && <WeatherInfo weather={weather} error={weatherError && "Invalid city name!"} />}
