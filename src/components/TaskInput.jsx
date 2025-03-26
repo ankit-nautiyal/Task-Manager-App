@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {addTodo} from "../features/taskSlice"
+import { TextField } from '@mui/material';
 
 export default function TaskInput(){
     const [task, setTask] = useState("");
@@ -19,7 +20,7 @@ export default function TaskInput(){
     return(
         <>
             <form onSubmit={handleSubmit}>
-                <input required type="text" placeholder="Enter your task " value={task} onChange={(event)=> setTask(event.target.value)} name="" id="" />
+                <TextField required type="text" placeholder="Enter your task " value={task} onChange={(event)=> setTask(event.target.value)}></TextField>
                 <Button variant="contained" onClick={handleSubmit}>Add Task</Button>
             </form>
         </>

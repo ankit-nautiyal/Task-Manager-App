@@ -26,6 +26,7 @@ export const taskSlice= createSlice({
                 id: nanoid(),
                 task: action.payload,
                 isDone: false,
+                priority: "Medium", // Default priority
             }
             state.todos.push(newTodo); //direct mutation using redux toolkit
             localStorage.setItem("todos", JSON.stringify(state.todos)); // Save to localStorage
@@ -42,9 +43,18 @@ export const taskSlice= createSlice({
                 todo.isDone = true;
             }
             localStorage.setItem("todos", JSON.stringify(state.todos)); // Update localStorage
-        }
+        },
+
+        setPriority: (state, action) => {
+            const { id, priority } = action.payload;
+            const todo = state.todos.find(todo => todo.id === id);
+            if (todo) {
+                todo.priority = priority;
+            }
+            localStorage.setItem("todos", JSON.stringify(state.todos));
+        },
     }
 });
 
-export const {addTodo, deleteTodo, markAsDone} = taskSlice.actions;
+export const {addTodo, deleteTodo, markAsDone, setPriority} = taskSlice.actions;
 export default taskSlice.reducer;
