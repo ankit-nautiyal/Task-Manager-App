@@ -25,12 +25,8 @@ A simple yet efficient **Task Manager App** built with **React.js** and **Redux 
 
 ---
 ## 📷 **Project Snapshots** 
-![image](https://github.com/user-attachments/assets/d37b2c57-b426-4f24-b1a2-eac2e3c69f22)
-![image](https://github.com/user-attachments/assets/008478b0-7cb1-4f19-a8fa-d89f92c19074)
-![image](https://github.com/user-attachments/assets/d64fa531-8bfd-4c5e-9e94-0bc66acf5d79)
-![image](https://github.com/user-attachments/assets/5fed3c36-4593-4c81-bffe-e285197f0a32)
-![image](https://github.com/user-attachments/assets/ebeecbe1-83b7-4acd-8882-49cbe80a5d3b)
-![image](https://github.com/user-attachments/assets/0bfffc91-828e-45ed-a396-016fb3e14886)
+
+
 
 
 
