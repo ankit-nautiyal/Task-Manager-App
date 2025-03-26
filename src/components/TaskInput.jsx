@@ -20,7 +20,7 @@ export default function TaskInput(){
     return(
         <div className={styles.taskInputContainer}>
             <form onSubmit={handleSubmit} className={styles.taskForm}>
-                <TextField className={styles.taskInput}   required type="text" placeholder="Enter your task " value={task} onChange={(event)=> setTask(event.target.value)}></TextField>
+                <TextField className={styles.taskInput}  required type="text" placeholder="Enter your task " value={task} onChange={(event)=> setTask(event.target.value)}></TextField>
                 <Button variant="contained" onClick={handleSubmit}>Add Task</Button>
             </form>
         </div>

@@ -22,7 +22,7 @@ const Auth = () => {
             return;
         };  // Ensure city is provided
         
-        dispatch(login({city}));
+        dispatch(login({city, username}));
         navigate("/");
     };
 

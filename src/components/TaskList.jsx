@@ -99,7 +99,7 @@ export default function TaskList(){
         return (priorityOrder[a.priority] || 4) - (priorityOrder[b.priority] || 4);
     });
 
-    console.log("Weather Data in TaskList.jsx:", weather); // Debugging log
+    // console.log("Weather Data in TaskList.jsx:", weather); // Debugging log
     
 
     return(
