@@ -68,7 +68,7 @@ This will start the application on `http://localhost:5173/`.
 
 ## 🏗️ **Folder Structure**  
 
-📂 task-manager-app/
+📂 redux-class/
 ├── 📂 node_modules/          # Dependencies (auto-generated)
 ├── 📂 public/
 │   └── 📄 favicon.webp       # Website favicon
