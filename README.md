@@ -56,7 +56,7 @@ Make sure you have the following installed:
 
 ### **Step 1: Clone the Repository**  
 ```bash
-git clone https://github.com/ankit-nautiyal/Task-Manager-React-Redux.git
+git clone https://github.com/ankit-nautiyal/Task-Manager-App.git
 cd task-manager-app
 ```
 
