@@ -7,7 +7,7 @@ A simple yet efficient **Task Manager App** built with **React.js** and **Redux 
 ## 🚀 **Features**  
 
 ✔️ **Add Tasks** – Users can input new tasks effortlessly.  
-✔️ **Mark as Done/Undo** – Click to mark a task as complete (strikethrough styling). Clicking again will undo the action.  
+✔️ **Mark as Done/Undo** – Click to mark a task✅ as complete (strikethrough styling). Clicking again will undo the action.  
 ✔️ **Delete Tasks** – Remove tasks from the list with a single click.  
 ✔️ **Persisted State** – The task list persists across sessions using Redux.  
 ✔️ **Weather API Integration** – Fetches real-time weather data using Axios.  
